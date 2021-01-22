@@ -1,4 +1,3 @@
-const { lstat } = require("fs");
 
 var slideIndex = 1;
 const maxSlideIndex = 32 ;
@@ -50,17 +49,6 @@ function saveProperties () {
     $("#description").html(b) ;
     
 }
-
-
-/*
-$("#description").keypress( e => {
-    let keycode = (e.keyCode ? e.keyCode : e.which);
-    if(keycode == '13'){
-        let desc = $("#description").val();
-        alert (desc);
-    }
-})
-*/
 
 function fillPeopleWithAllData(data) {
     $.ajax( {
