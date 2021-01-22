@@ -155,7 +155,7 @@ function showSlide() {
             dataType : 'json'
         })
         .done(function (data) {
-            $("#description").html(data["description"]) ;git init
+            $("#description").html(data["description"]) ;
         })
         .fail(function(jq, status,err) {
             console.log("Ajax error",status) ;
