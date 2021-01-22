@@ -9,5 +9,16 @@
        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
    },
   "author": "Virtualité Réelle",
-  "license": "ISC"
+  "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.1",
+     },
+    "devDependencies": {
+      "nodemon": "^2.0.2",
+      "minimist": ">=1.2.3"
+    },
+    "engines": {
+      "node": "12.13.1"
+    }
+  }
 }
