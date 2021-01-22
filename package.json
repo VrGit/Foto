@@ -4,8 +4,10 @@
   "description": "Image manager for Paillet",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js"
-  },
+      "start": "node app.js",
+       "server": "nodemon app.js",
+       "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
+   },
   "author": "Virtualité Réelle",
   "license": "ISC"
 }
