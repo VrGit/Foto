@@ -1,0 +1,11 @@
+{
+  "name": "foto",
+  "version": "1.0.0",
+  "description": "Image manager for Paillet",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "Virtualité Réelle",
+  "license": "ISC"
+}
