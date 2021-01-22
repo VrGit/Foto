@@ -2,7 +2,6 @@ const express = require('express') ;
 const app = express ();
 const metafoto = require('./metafoto/metafoto') ;
 const people = require('./people/people') ;
-var sizeOf = require('image-size');
 
 //app.use(express.static(__dirname+'/public')) ;
 app.use(express.static('public')) ;
