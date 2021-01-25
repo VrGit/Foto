@@ -10,7 +10,7 @@ function get(number) {
         r = {
             "number":number,
             "description":"Photo numéro "+number,
-            "assignedPeople": []
+            "assignedPeople": {}
         } ;
         data[number] = r ;
     }
@@ -20,25 +20,58 @@ function get(number) {
             r["description"] = "Photo numéro "+number ;
         }
         let b = r["assignedPeople"] ;
-        if ( (b === undefined) || (b === "")) {
-            r["assignedPeople"] = [] ;
+        if (b === undefined) {
+            r["assignedPeople"] = {} ;
         }
     }
     return r ;
 }
 
-function setDescription(number, description) {
+function setDescription(number, description, toBeChecked) {
     let r = get(number) ;
     r["number"] = number ;
     r["description"] = description ;
+    r["toBeChecked"] = toBeChecked ;
     return r ;
 }
 
-function assignPeople(number, assignedPeople) {
-    let r = get(number) ;
-    r["number"] = number ;
-    r["assignedPeople"] = assignedPeople ;
-    return r ;
+function addRelatedPeople (number, assignedId) {
+    let r = get(number)["assignedPeople"]  ;
+    let keys = Object.keys(r) ;
+    for (let i=0 ; i < keys.length ; i++) {
+         let key = keys[i] ;
+         let element = r[key] ;
+         if (key === assignedId) {
+             // Found
+              return;
+         }
+    }    
+    r[assignedId] = {
+        "x" : -1,
+        "y" : -1
+    }
+}
+
+function clearRelatedPeople (number) {
+    get(number)["assignedPeople"] = {} ;
+}
+function setRelatedPeoplePosition (number, assignedId,x,y) {
+   let r = get(number)["assignedPeople"]  ;
+   let keys = Object.keys(r) ;
+   for (let i=0 ; i < keys.length ; i++) {
+        let key = keys[i] ;
+        let element = r[key] ;
+        if (key === assignedId) {
+            element.x=x;
+            element.y=y;
+            return;
+        }
+   }    
+   // Case of not found yet
+   r[assignedId] = {
+    "x" : x,
+    "y" : y
+}
 }
 
 function size() {
@@ -46,6 +79,13 @@ function size() {
 }
 
 function save () {
+    // Clear of temp items
+    Object.keys(data).forEach(key => {
+        let element = data[key] ;
+        delete element.aPeople ;
+    });
+
+    console.log('Saving ...');
     let str = JSON.stringify(data, null, 2);
     fs.writeFile(file, str, (err) => {
         if (err) throw err;
@@ -56,6 +96,8 @@ function save () {
 module.exports.data = data
 module.exports.get = get
 module.exports.setDescription = setDescription
-module.exports.assignPeople = assignPeople
+module.exports.addRelatedPeople = addRelatedPeople
+module.exports.setRelatedPeoplePosition = setRelatedPeoplePosition
 module.exports.size = size
 module.exports.save = save
+module.exports.clearRelatedPeople = clearRelatedPeople 

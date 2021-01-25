@@ -7,12 +7,12 @@
 </head>
 <body>
     <!-- Slideshow container -->
-    <div class="slideshow-container">
+    <div id ="image-container" class="slideshow-container tooltip-container">
         
         <!-- Full-width images with number and caption text -->
         <div id="number" class="numbertext"></div>
-         <img id="image" class="image">
-         <pre id="description" class="overlay"></pre>
+        <img id="image" class="images"> 
+        <pre id="description" class="overlay"></pre>
         
         <!-- Next and previous buttons -->
         <a class="prev" onclick="plusSlide(-1)">&#10094;</a>
@@ -20,6 +20,8 @@
         <a class="edit " onclick="openProperties()"><img src="property.png" class="icone"></a>
         <a class="people" onclick="openPeople()"><img src="face.png" class="icone"></a>
         <a class="zoom" onclick="openZoom()"><img src="zoom.png" class="icone"></a>
+        <a class="save" onclick="onSave()"><img src="save.png" class="icone"></a>
+        <a id="warning" class="warning"><img src="exclQuesgit .png" class="icone"></a>
         
     </div>
     
@@ -28,13 +30,19 @@
             <label for="iDescription">Description</label>
             <textarea id="iDescription" name="subject" placeholder="Entrez une description ..." style="height:200px"></textarea>
             
-            <input type="button" value="Valider" onclick="saveProperties()">
+            <label class="vrCMcontainer">Cette description doit être confirmée.
+                <input id="toBeChecked" type="checkbox" checked="checked">
+                <span class="vrCMcheckmark"></span>
+            </label>
+
+             <input type="button" value="Valider" onclick="saveProperties()">
             <input type="button" value="Ignorer" onclick="closeProperties()">
         </form>
     </div>
     
     <div id="peopleBox">
         <label for="peopleList">Personnes identifiées sur la photo:</label>
+        <input type="text" id="peopleFilter" onkeyup="onPeopleFilterKeyUp()" placeholder="...">
         <ul id="peopleList">
         </ul>
         <input type="button" value="Fermer" onclick="savePeople()">

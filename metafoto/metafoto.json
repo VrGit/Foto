@@ -1,75 +1,200 @@
 {
   "1": {
     "number": "1",
-    "description": "Le mariage de Papa et Maman.\nNouvelle ligne",
-    "assignedPeople": [
-      "2",
-      "3"
-    ],
-    "sPeople": "Josette Platon René Leydier "
+    "description": "Le mariage de Papa et Maman.",
+    "assignedPeople": {
+      "2": {
+        "x": "50",
+        "y": "52"
+      },
+      "3": {
+        "x": "30",
+        "y": "51"
+      }
+    },
+    "toBeChecked": "true"
   },
   "2": {
     "number": "2",
     "description": "Mariage de Simone et Jean-Jacques",
-    "assignedPeople": [
-      "1"
-    ],
-    "sPeople": "Thierry Leydier "
+    "assignedPeople": {
+      "1": {
+        "x": "48",
+        "y": "45"
+      }
+    },
+    "toBeChecked": true
   },
   "3": {
     "number": "3",
     "description": "Avec les Bourgue !",
-    "assignedPeople": [
-      "2",
-      "3"
-    ],
-    "sPeople": "Josette Platon René Leydier "
+    "assignedPeople": {
+      "2": {
+        "x": "57",
+        "y": "61"
+      },
+      "3": {
+        "x": "51",
+        "y": "48"
+      }
+    }
   },
   "4": {
     "number": "4",
-    "description": "Pierre Platon\nEncore lui",
-    "sPeople": "",
-    "assignedPeople": []
+    "description": "Pierre Platon",
+    "assignedPeople": {}
   },
   "5": {
     "number": "5",
     "description": "Josette en communiante",
-    "assignedPeople": [],
-    "sPeople": ""
+    "assignedPeople": {
+      "2": {
+        "x": "44",
+        "y": "51"
+      }
+    }
   },
   "6": {
     "number": "6",
     "description": "Monique",
-    "assignedPeople": [],
-    "sPeople": ""
+    "assignedPeople": {}
   },
   "7": {
     "number": "7",
     "description": "Nicole",
-    "assignedPeople": [],
-    "sPeople": ""
+    "assignedPeople": {
+      "7": {
+        "x": "43",
+        "y": "73"
+      }
+    }
   },
   "8": {
     "number": "8",
     "description": "Photo numéro 8",
-    "assignedPeople": [],
-    "sPeople": ""
+    "assignedPeople": {
+      "6": {
+        "x": "49",
+        "y": "77"
+      }
+    }
   },
   "9": {
     "number": "9",
     "description": "Photo numéro 9",
-    "assignedPeople": [],
-    "sPeople": ""
+    "assignedPeople": {
+      "7": {
+        "x": "48",
+        "y": "77"
+      }
+    }
   },
   "10": {
     "number": "10",
     "description": "Photo numéro 10",
-    "assignedPeople": [],
-    "sPeople": ""
+    "assignedPeople": {}
   },
   "11": {
     "number": "11",
     "description": "Photo numéro 11",
-    "sPeople": ""
+    "assignedPeople": {
+      "2": {
+        "x": "51",
+        "y": "42"
+      }
+    }
+  },
+  "12": {
+    "number": "12",
+    "description": "Photo numéro 12",
+    "assignedPeople": {
+      "2": {
+        "x": "54",
+        "y": "39"
+      }
+    }
+  },
+  "13": {
+    "number": "13",
+    "description": "Photo numéro 13",
+    "assignedPeople": {
+      "2": {
+        "x": "14",
+        "y": "76"
+      }
+    }
+  },
+  "14": {
+    "number": "14",
+    "description": "Photo numéro 14",
+    "assignedPeople": {
+      "6": {
+        "x": "36",
+        "y": "48"
+      },
+      "7": {
+        "x": "54",
+        "y": "53"
+      }
+    }
+  },
+  "15": {
+    "number": "15",
+    "description": "Photo numéro 15",
+    "assignedPeople": {}
+  },
+  "16": {
+    "number": "16",
+    "description": "Photo numéro 16",
+    "assignedPeople": {
+      "2": {
+        "x": "57",
+        "y": "55"
+      }
+    }
+  },
+  "17": {
+    "number": "17",
+    "description": "Photo numéro 17",
+    "assignedPeople": {}
+  },
+  "18": {
+    "number": "18",
+    "description": "Photo numéro 18",
+    "assignedPeople": {}
+  },
+  "19": {
+    "number": "19",
+    "description": "Photo numéro 19",
+    "assignedPeople": {}
+  },
+  "20": {
+    "number": "20",
+    "description": "Photo numéro 20",
+    "assignedPeople": {
+      "2": {
+        "x": "40",
+        "y": "29"
+      }
+    }
+  },
+  "21": {
+    "number": "21",
+    "description": "Photo numéro 21",
+    "assignedPeople": {
+      "1": {
+        "x": "82",
+        "y": "34"
+      }
+    }
+  },
+  "32": {
+    "number": "32",
+    "description": "Photo numéro 32",
+    "assignedPeople": {}
+  },
+  "undefined": {
+    "description": "Photo numéro undefined",
+    "assignedPeople": {}
   }
 }

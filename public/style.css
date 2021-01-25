@@ -23,13 +23,13 @@ body {
 
 */
 
-.image {
+.images {
     margin: auto ;
     display:block ;
 }
 
 /* Next & previous buttons */
-.prev, .next, .edit, .people, .zoom {
+.prev, .next, .edit, .people, .zoom, .save, .warning {
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -47,6 +47,11 @@ body {
 /* Position the "next button" to the right */
 .next {
     right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev {
+    left: 0;
     border-radius: 3px 0 0 3px;
 }
 
@@ -72,8 +77,22 @@ body {
     border-radius: 3px 0 0 3px;
 }
 
+.save {
+  right: 0;
+  top : 0 ;
+  margin-top: 180px;
+  border-radius: 3px 0 0 3px;
+}
+
+.warning {
+  left: 0;
+  top : 0 ;
+  margin-top: 2px;
+  border-radius: 3px 0 0 3px;
+}
+
 /* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover, .edit:hover {
+.prev:hover, .next:hover, .edit:hover , .people:hover, .zoom:hover, .save:hover{
     background-color: rgba(75, 65, 65, 0.281);
 }
 
@@ -135,6 +154,81 @@ body {
     height: 48px;
 }
 
+/* ===========================*/
+/*  Generic check mark custom */
+
+/* The container */
+.vrCMcontainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.vrCMcontainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.vrCMcheckmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.vrCMcontainer:hover input ~ .vrCMcheckmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.vrCMcontainer input:checked ~ .vrCMcheckmark {
+  background-color: #4CAF50;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.vrCMcheckmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.vrCMcontainer input:checked ~ .vrCMcheckmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.vrCMcontainer .vrCMcheckmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/*  Generic check mark custom end */
+/* ===========================*/
+
+
 /* Modal Box for properties */
 div#modalBox {
     display: none;
@@ -147,6 +241,7 @@ div#modalBox {
     border : 3px;
     border-color: blue;
     padding: 20px;
+    font-size: 18px;
 }
 
 div#modalBox textarea {
@@ -165,12 +260,13 @@ div#modalBox input[type=text], select, textarea {
     resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
   }
   
+
   /* Style the submit button with a specific background color etc */
   input[type=button] {
     background-color: #4CAF50;
     color: white;
     padding: 12px 20px;
-    margin-top: 16px; /* Add a top margin */
+    margin-top: 8px; /* Add a top margin */
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -180,7 +276,7 @@ div#modalBox input[type=text], select, textarea {
   input[type=button]:hover {
     background-color: #45a049;
   }
-  
+
   /* People Box */
   div#peopleBox {
     display: none;
@@ -252,8 +348,20 @@ div#modalBox input[type=text], select, textarea {
     width: 7px;
   }
   
+  #peopleFilter {
+    background-image: url('searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+  }
+  
  
 /****************/
+/* Magnifier */
 .img-magnifier-glass {
     position: absolute;
     border: 3px solid #000;
@@ -262,4 +370,41 @@ div#modalBox input[type=text], select, textarea {
     /*Set the size of the magnifier glass:*/
     width: 100px;
     height: 100px;
+  }
+
+  /****************/
+/* Tooltip */
+/* Tooltip container */
+
+  
+  /* Tooltip text */
+  .tooltip-container .tooltip-text {
+    visibility: hidden;
+    width: auto;
+    background-color :rgb(228, 118, 54, 50);
+    color: black;
+    text-align: center;
+    padding: 10px ;
+    border-radius: 20%;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+
+ 
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+  }
+
+  .tooltip-blink {
+    animation: tooltip-blinker 500ms linear infinite;
+  }
+  
+  @keyframes tooltip-blinker {
+    50% {
+      opacity: 0;
+    }
   }
