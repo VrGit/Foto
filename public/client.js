@@ -10,6 +10,9 @@ var currentCollection = [] ;
 var zoomOn = false ;
 const zoomID = "myZoomID" ;
 
+var mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ;
+alert (mobile) ;
+
 // Next/previous controls
 function plusSlide(n) {
     slideIndex += n ;
