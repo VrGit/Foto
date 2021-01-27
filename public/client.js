@@ -1,15 +1,20 @@
 
-var slideIndex = 1;
+var slideIndex = 0;
+var maxSlideIndex = 0 ;
+
 var currentCheckedPeople ;
-const maxSlideIndex = 32 ;
+var currentDescription = "?";
+var currentToBeChecked = false ;
+var currentCollection = [] ;
+
 var zoomOn = false ;
 const zoomID = "myZoomID" ;
 
 // Next/previous controls
 function plusSlide(n) {
     slideIndex += n ;
-    if (slideIndex > maxSlideIndex) {slideIndex = 1} 
-    if (slideIndex < 1) {slideIndex = maxSlideIndex}
+    if (slideIndex >= maxSlideIndex) {slideIndex = 0 ; } 
+    if (slideIndex < 0) {slideIndex = maxSlideIndex-1 ; }
     showSlide();
 }
 
@@ -23,11 +28,13 @@ function openZoom () {
     }
 }
 
+/////////////////////////////////////////
 function openProperties () {
     $("#modalBox").css("display","block");
     
-    var a = $("#description").html() ;
-    $("#iDescription").val(a) ;
+    $("#iDescription").val(currentDescription) ;
+    $("#toBeChecked").prop('checked', currentToBeChecked);
+
 }
 
 function closeProperties () {
@@ -43,15 +50,28 @@ function saveProperties () {
         type: 'GET',
         url:'/edit',
         data: {
-            "number" : slideIndex,
+            "number" : currentCollection[slideIndex],
             "description" : b,
             "toBeChecked": c
         },
         dataType : 'json'
     }) ;
-    fillDescriptor(b,c) ;
-     
+    fillDescriptor(b,c) ;     
 }
+/////////////////////////////////////////
+function openNewPeople () {
+    $("#newPeopleBox").css("display","block");    
+}
+
+function closeNewPeople () {
+    $("#newPeopleBox").css("display","none");
+}
+function saveNewPeople () {
+    // TODO
+    $("#newPeopleBox").css("display","none");
+}
+/////////////////////////////////////////
+
 
 var peoplePattern = "" ;
 function onPeopleFilterKeyUp () {
@@ -66,7 +86,7 @@ function fillPeopleWithAllData(peopleMap) {
         type: 'GET',
         url:'/getAssigned',
         data: {
-            "number" : slideIndex
+            "number" : currentCollection[slideIndex]
         },
         dataType : 'json'
     })
@@ -106,18 +126,21 @@ function fillPeopleList () {
     
 }
 
+function getImageSrc (iLocal) {
+    let i = parseInt(currentCollection[iLocal]) ;
+    var n = i ;
+    if (i < 10) {
+        n = '00' + i ;
+    }
+    else if (i < 100) {
+        n = '0' + i ;
+    }
+    return "https://virtualitereelle.com/paillet/Paillet"+n+ ".jpg" ;
+}
 function showSlide() {
     
-    var n = slideIndex ;
-    if (slideIndex < 10) {
-        n = '00' + slideIndex ;
-    }
-    else if (slideIndex < 100) {
-        n = '0' + slideIndex ;
-    }
-    
     var image = document.getElementById("image");
-    image.src = "https://virtualitereelle.com/paillet/Paillet"+n+ ".jpg" ;
+    image.src =  getImageSrc(slideIndex);
     
     let w = window.innerWidth ; 
     let h = window.innerHeight;
@@ -134,7 +157,7 @@ function showSlide() {
     }
     
     var number = document.getElementById("number");
-    number.innerText = slideIndex + '/' + maxSlideIndex ;
+    number.innerText = (slideIndex+1) + '/' + maxSlideIndex ;
 
     $("#description").html("") ;
     $("span").each(function() { 
@@ -147,11 +170,12 @@ function showSlide() {
         type: 'GET',
         url:'/description',
         data: {
-            "number" : slideIndex
+            "number" : currentCollection[slideIndex]
         },
         dataType : 'json'
     })
     .done(function (data) {
+
         fillDescriptor(data["description"],data["toBeChecked"]) ;
  
         let tt = data["aPeople"] ;
@@ -182,6 +206,9 @@ function showSlide() {
 }
 
 function  fillDescriptor(text, warning) {
+    currentDescription = text ;
+    if (warning === undefined) warning = false ;
+    currentToBeChecked = warning ;
     $("#description").html(text) ;
     if (warning) {
         $("#warning").css("display","block");
@@ -192,10 +219,25 @@ function  fillDescriptor(text, warning) {
 }
 
 /* People Box */
-function openPeople () {
+$("#bPeople").click(function(ev) {
     fillPeopleList();
     $("#peopleBox").css("display","block");
-}
+    if (ev.altKey) {
+        $("#bNewPeople").css("display","inline");
+    }
+    else {
+        $("#bNewPeople").css("display","none");
+    }
+});  
+
+$("#bEdit").click(function(ev) {
+     if (ev.altKey) {
+        openAlbum () ;
+     }
+    else {
+        openProperties() ;
+     }
+}); 
 
 function savePeople () {
     var res = [] ;
@@ -209,7 +251,7 @@ function savePeople () {
         type: 'GET',
         url:'/assignPeople',
         data: {
-            "number" : slideIndex,
+            "number" : currentCollection[slideIndex],
             "assignedIds" : res
         },
         dataType : 'json'
@@ -251,7 +293,7 @@ $("#image-container").mousedown(function(ev) {
             type: 'GET',
             url:'/positionPeople',
             data: {
-                "number" : slideIndex,
+                "number" : currentCollection[slideIndex],
                 "id" : currentCheckedPeople,
                 "x" : xp,
                 "y" : yp,
@@ -279,22 +321,124 @@ function createListEvent () {
         if (ev.target.tagName === 'LI') {
             let stateBefore = ev.target.classList.contains('checked') ;
             ev.target.classList.toggle('checked');
-            if (!stateBefore) {
-                currentCheckedPeople = ev.target.getAttribute('data-value') ;
-                let name = ev.target.innerText ;
+            let dv = ev.target.getAttribute('data-value') ;
+            let selector = "#pTag"+dv.trim() ;
+            let elt = $(selector) ;
+           if (!stateBefore) {
+                currentCheckedPeople = dv ;
                 $("#peopleBox").css("display","none");
-                let selector = "#pTag"+currentCheckedPeople.trim() ;
-                let elt = $(selector) ;
+                elt.css("display","block");
                 elt.css("background-color","red");
                 elt.addClass("tooltip-blink");
- //               alert ("Cliquez sur "+name) ;
-
+                /*
+                let name = ev.target.innerText ;
+                alert ("Cliquez sur "+name) ;
+                */
+            }
+            else {
+                // Disparition du tag
+                elt.css("display","none");
             }
         }
     });   
 }
 
+function openAlbum () {
+    $("#image-container").css("display","none");
+    $("#album-container").css("display","block");
+
+    $.ajax( {
+        type: 'GET',
+        url:'/wholeCollection'
+    })
+    .done(function (data) {
+        currentCollection = data ;
+        maxSlideIndex = currentCollection.length ;
+        let nbInCol = maxSlideIndex/4 ;
+        let j=0 ;
+        let html = "" ;
+        for (let i=0 ; i < maxSlideIndex ; i++) {
+            let src = getImageSrc(i) ;
+    
+            if (j==0) {
+                html+='<div class="album-column">';           
+            }
+    
+            let s = "<div class='album-img-block'>" ;
+            s+= "<img src='"+src+"' class='album-img'/>" ;
+            s+='<input type="checkbox"  class="album-checkbox" data-value="'+(i+1)+'" />' ;
+            s+= "</div>"
+            html+=s;
+    
+            j++ ;
+            if (j>nbInCol) {
+                j=0 ;
+                html+='</div>' ;                  
+            }
+        }
+        if (j!=0) {
+            html+='</div>' ;                  
+        }
+        $("#album-row").html(html) ;
+    })
+    .fail(function(jq, status,err) {
+        console.log("Ajax error",status) ;
+    });     
+}
+
+function saveAlbum () {
+    $("#image-container").css("display","block");
+    $("#album-container").css("display","none");
+
+    let selector = $("#album-container input.album-checkbox") ;
+    var res = [] ;
+    selector.each(function() { 
+        var c = $(this).is(":checked") ;
+        if (c) {
+            res.push(this.getAttribute('data-value'));
+        }
+    });
+    console.log (res) ; // new album
+    currentCollection = res ;
+    maxSlideIndex = currentCollection.length ;
+    showSlide() ;
+    $.ajax( {
+        type: 'GET',
+        url:'/saveCollection',
+        data: {
+            "collection" : currentCollection
+        },
+    })
+    .done(function (data) {
+     })
+    .fail(function(jq, status,err) {
+        console.log("Ajax error",status) ;
+    });    
+}
+
+$("#album-title").click(function(ev) {
+    if (ev.altKey) {
+        saveAlbum () ;
+    }
+}); 
+
+function initCurrentCollecion() {
+    $.ajax( {
+        type: 'GET',
+        url:'/currentCollection'
+    })
+    .done(function (data) {
+        currentCollection = data ;
+        maxSlideIndex = currentCollection.length ;
+        showSlide() ;
+    })
+    .fail(function(jq, status,err) {
+        console.log("Ajax error",status) ;
+    });    
+
+}
 createListEvent();
-showSlide() ;
+initCurrentCollecion ();
+
 
 

@@ -89,7 +89,7 @@ function save () {
     let str = JSON.stringify(data, null, 2);
     fs.writeFile(file, str, (err) => {
         if (err) throw err;
-        console.log('Data written to file');
+        console.log('Photos metadata written to file');
     });
 }
 

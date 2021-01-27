@@ -4,6 +4,11 @@ const metafoto = require('./metafoto/metafoto') ;
 const people = require('./people/people') ;
 const colors = require('./colors/color') ;
 
+const fs = require('fs') ;
+const paramsFile = __dirname+'/params.json' ;
+let rawParams = fs.readFileSync(paramsFile);
+let params = JSON.parse(rawParams);
+
 const NO_RES = {} ;
 
 //app.use(express.static(__dirname+'/public')) ;
@@ -24,12 +29,38 @@ app.get ('/description', function (req,res) {
     res.send(r) ; 
 });
 
+app.get ('/currentCollection', function (req,res) {
+    console.log("Current collection="+params.currentCollection) ;
+     res.send(params.currentCollection) ;
+ });
+
+ app.get ('/saveCollection', function (req,res) {
+    params.currentCollection = req.query.collection ;
+    console.log("Current collection="+params.currentCollection) ;
+    res.send(NO_RES) ;
+ });
+
+ app.get ('/wholeCollection', function (req,res) {
+     let r = [] ;
+     for (let i=1 ; i <=32 ; i++) r.push(String(i)) ;
+     res.send(r) ;
+ });
+
+
 app.get ('/edit', function (req,res) {
     metafoto.setDescription(req.query.number ,req.query.description, req.query.toBeChecked) ;
     res.send(NO_RES) ;
  });
 app.get ('/save', function (req,res) {
     metafoto.save();
+
+    // Save of the parameters
+    let str = JSON.stringify(params, null, 2);
+    fs.writeFile(paramsFile, str, (err) => {
+        if (err) throw err;
+        console.log('Params written to file');
+    });
+
     res.send(NO_RES) ;
 });
 

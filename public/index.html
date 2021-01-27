@@ -17,8 +17,8 @@
         <!-- Next and previous buttons -->
         <a class="prev" onclick="plusSlide(-1)">&#10094;</a>
         <a class="next" onclick="plusSlide(1)">&#10095;</a>
-        <a class="edit " onclick="openProperties()"><img src="property.png" class="icone"></a>
-        <a class="people" onclick="openPeople()"><img src="face.png" class="icone"></a>
+        <a class="edit " id="bEdit"><img src="property.png" class="icone"></a>
+        <a class="people" id="bPeople"><img src="face.png" class="icone"></a>
         <a class="zoom" onclick="openZoom()"><img src="zoom.png" class="icone"></a>
         <a class="save" onclick="onSave()"><img src="save.png" class="icone"></a>
         <a id="warning" class="warning"><img src="exclQues.png" class="icone"></a>
@@ -42,12 +42,32 @@
     
     <div id="peopleBox">
         <label for="peopleList">Personnes identifiées sur la photo:</label>
-        <input type="text" id="peopleFilter" onkeyup="onPeopleFilterKeyUp()" placeholder="...">
+        <input type="text" id="peopleFilter" onkeyup="onPeopleFilterKeyUp()" placeholder="..."/>
         <ul id="peopleList">
         </ul>
-        <input type="button" value="Fermer" onclick="savePeople()">
+        <input type="button" value="Nouveau" onclick="openNewPeople()" id="bNewPeople"/>
+        <input type="button" value="Fermer" onclick="savePeople()"/>
     </div>
     
+    <div id="newPeopleBox">
+        <label class="titreBox">Propriétés d'une personne</label>
+
+        <label for="npName">Nom:</label>
+        <input id="npName"  type="text"/>
+
+        <input type="button" value="Ajouter" onclick="saveNewPeople()"/>
+        <input type="button" value="Annuler" onclick="closeNewPeople()"/>
+    </div>
+
+    <div id="album-container">
+        <label id="album-title" class="titreBox sticky">Ensemble des photos</label>
+        <div id="album-row" class="album-row">
+
+        </div>
+        <input type="button" value="Valider" onclick="saveAlbum()"/>
+
+    </div>
+
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="magnifier.js"></script>
     <script src="client.js"></script>
