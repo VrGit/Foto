@@ -11,7 +11,7 @@ var zoomOn = false ;
 const zoomID = "myZoomID" ;
 
 var mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ;
-alert (mobile) ;
+
 
 // Next/previous controls
 function plusSlide(n) {
@@ -443,5 +443,18 @@ function initCurrentCollecion() {
 createListEvent();
 initCurrentCollecion ();
 
+if (mobile) {
+    // Cacher les boutons
+    $(".edit").css("display","none");
+    $(".people").css("display","none");
+    $(".zoom").css("display","none");
+    $(".save").css("display","none");
 
+    $("div").on("swipeleft",function(){
+        plusSlide(-1) ;
+    });
+    $("div").on("swiperight",function(){
+        plusSlide(1) ;
+    });
+}
 
