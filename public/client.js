@@ -449,12 +449,11 @@ if (mobile) {
     $(".people").css("display","none");
     $(".zoom").css("display","none");
     $(".save").css("display","none");
-
-    $("div").on("swipeleft",function(){
-        plusSlide(-1) ;
-    });
-    $("div").on("swiperight",function(){
-        plusSlide(1) ;
-    });
 }
 
+$("div#image-container").on("swipeleft",function(){
+    plusSlide(-1) ;
+});
+$("div#image-container").on("swiperight",function(){
+    plusSlide(1) ;
+});
