@@ -449,11 +449,14 @@ if (mobile) {
     $(".people").css("display","none");
     $(".zoom").css("display","none");
     $(".save").css("display","none");
+
+    $("div#image-container").on("swipeleft",function(){
+        plusSlide(-1) ;
+    });
+    $("div#image-container").on("swiperight",function(){
+        plusSlide(1) ;
+    });
+
+    window.fullScreen = true ;
 }
 
-$("div#image-container").on("swipeleft",function(){
-    plusSlide(-1) ;
-});
-$("div#image-container").on("swiperight",function(){
-    plusSlide(1) ;
-});
