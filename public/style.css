@@ -17,6 +17,7 @@ body {
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 
 .images {
@@ -82,8 +83,7 @@ body {
 
 .warning {
   left: 0;
-  top : 0 ;
-  margin-top: 2px;
+  top: 90% ;
   border-radius: 3px 0 0 3px;
 }
 
@@ -95,12 +95,12 @@ body {
 
 /* Number text (1/3 etc) */
 .numbertext {
-  color: #d8bc1b;
+  color: #d8801b;
   font-size: 22px;
   padding: 8px 12px;
   position: absolute;
   width: 100%;
-  text-align: center;
+  text-align: left;
 }
 
 /* The overlay effect - lays on top of the container and over the image */
@@ -281,6 +281,20 @@ input[type=button] {
   border: none;
   border-radius: 4px;
   font-size: 24px;
+ }
+
+ .titreBoxLow {
+  display: block;
+  background-color: #4CAF50;
+  color: white;
+  width: 100% ;
+  height: 32px;
+  text-align: center ;
+  margin-top: 4px ;
+  padding-top: 4px ;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
  }
 
 /* When moving the mouse over the submit button, add a darker green color */
@@ -477,4 +491,44 @@ div#newPeopleBox {
   position: absolute; 
   bottom: 0px; 
   right: 0px; 
+}
+
+/* Album top navigation */
+#album-topnav {
+  top : 0px ;
+  z-index: 10;
+  position: sticky;
+  background-color: #e9e9e9;
+  display: flex;
+  flex-direction: row ;
+}
+
+#album-name {
+  display: inline;
+  width: 200px;
+  margin : 20px 0 ;
+}
+
+#album-filter {
+  display: inline;
+  width: 200px;
+  margin : 20px 0 ;
+}
+
+/* Modal Box for title */
+#album-title-box {
+  display: none;
+  background: green;
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px;
+  background-color: #fff;
+}
+
+#album-title-box input[type=button] {
+  padding: 4px;
+  margin: 8px 8px;
 }

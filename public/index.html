@@ -34,8 +34,8 @@
                 <input id="toBeChecked" type="checkbox">
                 <span class="vrCMcheckmark"></span>
             </label>
-
-             <input type="button" value="Valider" onclick="saveProperties()">
+            
+            <input type="button" value="Valider" onclick="saveProperties()">
             <input type="button" value="Ignorer" onclick="closeProperties()">
         </form>
     </div>
@@ -51,27 +51,48 @@
     
     <div id="newPeopleBox">
         <label class="titreBox">Propriétés d'une personne</label>
-
+        
         <label for="npName">Nom:</label>
         <input id="npName"  type="text"/>
-
+        
         <input type="button" value="Ajouter" onclick="saveNewPeople()"/>
         <input type="button" value="Annuler" onclick="closeNewPeople()"/>
     </div>
-
+    
     <div id="album-container">
-        <label id="album-title" class="titreBox sticky">Ensemble des photos</label>
-        <div id="album-row" class="album-row">
-
+        <div class="album-topnav">
+            <select id="album-name" onchange="changeAlbum()">
+            </select>
+            <select id="album-filter" onchange="openAlbum ()">
+            </select>
+            <input id="album-nouveau" type="button" value="Nouveau" onclick="openAlbumTitle()"/>
+            <input id="album-valider" type="button" value="Valider" onclick="saveAlbum()"/>
+            <input id="album-clear" type="button" value="Vider" onclick="clearAlbum()"/>
+            <input id="album-valider" type="button" value="Ignorer" onclick="closeAlbum()"/>
         </div>
-        <input type="button" value="Valider" onclick="saveAlbum()"/>
-
+ 
+        <div id="album-row" class="album-row">
+            
+        </div>
+        
     </div>
 
+    <div id="album-title-box">
+        <label class="titreBoxLow">Nom de l'album</label> 
+        <label for="naName">Nom:</label>
+        <input id="naName"  type="text"/>
+        
+        <input type="button" value="Valider" onclick="newAlbum()"/>
+     </div>
+    
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!--  
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  
+    -->
     <script src="magnifier.js"></script>
     <script src="client.js"></script>
+    <script src="swip.js"></script>
     
 </body>
 </html>

@@ -27,6 +27,27 @@ function get(number) {
     return r ;
 }
 
+function updateAssigned(number, assignedIds) {
+    if (assignedIds !== undefined) {
+        for (let i=0 ; i < assignedIds.length ; i++) {
+            let id = assignedIds[i] ;
+            addRelatedPeople(number ,id) ;
+        }
+        // Remove of non assigned
+        let r = get(number)["assignedPeople"]  ;
+        let keys = Object.keys(r) ;
+        for (let i=0 ; i < keys.length ; i++) {
+            let key = keys[i] ;
+            if (assignedIds.indexOf(key)==-1) {
+                delete r[key] ;
+                console.log("People remove: "+key) ;
+            }
+        }
+    }
+    else {
+        clearRelatedPeople (req.query.number);
+    }
+}
 function setDescription(number, description, toBeChecked) {
     let r = get(number) ;
     r["number"] = number ;
@@ -101,3 +122,5 @@ module.exports.setRelatedPeoplePosition = setRelatedPeoplePosition
 module.exports.size = size
 module.exports.save = save
 module.exports.clearRelatedPeople = clearRelatedPeople 
+module.exports.updateAssigned = updateAssigned
+

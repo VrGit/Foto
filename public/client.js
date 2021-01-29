@@ -6,6 +6,8 @@ var currentCheckedPeople ;
 var currentDescription = "?";
 var currentToBeChecked = false ;
 var currentCollection = [] ;
+var currentCollectionId = 0 ;
+var currentCollectionName = "" ;
 
 var zoomOn = false ;
 const zoomID = "myZoomID" ;
@@ -37,7 +39,7 @@ function openProperties () {
     
     $("#iDescription").val(currentDescription) ;
     $("#toBeChecked").prop('checked', currentToBeChecked);
-
+    
 }
 
 function closeProperties () {
@@ -121,7 +123,7 @@ function fillPeopleList () {
     })
     .done(function (data) {
         fillPeopleWithAllData(data) ;    
-     })
+    })
     .fail(function(jq, status,err) {
         console.log("Ajax error",status) ;
     }
@@ -129,8 +131,8 @@ function fillPeopleList () {
     
 }
 
-function getImageSrc (iLocal) {
-    let i = parseInt(currentCollection[iLocal]) ;
+function getImageSrc (images,iLocal) {
+    let i = parseInt(images[iLocal]) ;
     var n = i ;
     if (i < 10) {
         n = '00' + i ;
@@ -143,7 +145,7 @@ function getImageSrc (iLocal) {
 function showSlide() {
     
     var image = document.getElementById("image");
-    image.src =  getImageSrc(slideIndex);
+    image.src =  getImageSrc(currentCollection,slideIndex);
     
     let w = window.innerWidth ; 
     let h = window.innerHeight;
@@ -160,15 +162,18 @@ function showSlide() {
     }
     
     var number = document.getElementById("number");
-    number.innerText = (slideIndex+1) + '/' + maxSlideIndex ;
-
+    if (slideIndex+1>maxSlideIndex) {
+        slideIndex = maxSlideIndex-1 ;
+    }
+    number.innerText = currentCollectionName + ' [' + (slideIndex+1) + '/' + maxSlideIndex + ']';
+    
     $("#description").html("") ;
     $("span").each(function() { 
         if (this.classList.contains("tooltip-text")) {
             this.remove();
         }
     });            
-
+    
     $.ajax( {
         type: 'GET',
         url:'/description',
@@ -178,9 +183,9 @@ function showSlide() {
         dataType : 'json'
     })
     .done(function (data) {
-
+        
         fillDescriptor(data["description"],data["toBeChecked"]) ;
- 
+        
         let tt = data["aPeople"] ;
         for (let i=0 ; i < tt.length ; i++) {
             let v = tt[i] ;
@@ -197,7 +202,7 @@ function showSlide() {
             
             let imageContainer = $("#image-container");
             let sp = '<span id="pTag'+a+'" class="tooltip-text" style="left: '+x+
-                '%; top: '+y+'%; background-color: '+color+'; data-value="'+a+'";>'+s+'</span>' ;
+            '%; top: '+y+'%; background-color: '+color+'; data-value="'+a+'";>'+s+'</span>' ;
             imageContainer.append(sp) ;
         }
     })
@@ -234,12 +239,12 @@ $("#bPeople").click(function(ev) {
 });  
 
 $("#bEdit").click(function(ev) {
-     if (ev.altKey) {
+    if (ev.altKey) {
         openAlbum () ;
-     }
+    }
     else {
         openProperties() ;
-     }
+    }
 }); 
 
 function savePeople () {
@@ -270,7 +275,7 @@ function savePeople () {
 }
 
 function onSave () {
-     $.ajax( {
+    $.ajax( {
         type: 'GET',
         url:'/save',
         dataType : 'json'
@@ -291,7 +296,7 @@ $("#image-container").mousedown(function(ev) {
         let yp = Math.round(100 * y / target.height());
         let trace = x+","+y+","+target.width()+","+target.height() ;
         var peopleBox = $("#peopleBox") ;
-
+        
         $.ajax( {
             type: 'GET',
             url:'/positionPeople',
@@ -327,7 +332,7 @@ function createListEvent () {
             let dv = ev.target.getAttribute('data-value') ;
             let selector = "#pTag"+dv.trim() ;
             let elt = $(selector) ;
-           if (!stateBefore) {
+            if (!stateBefore) {
                 currentCheckedPeople = dv ;
                 $("#peopleBox").css("display","none");
                 elt.css("display","block");
@@ -346,33 +351,84 @@ function createListEvent () {
     });   
 }
 
+function changeAlbum () {
+    currentCollectionId = $('#album-name').val() ;
+    $.ajax( {
+        type: 'GET',
+        url:'/collectionFromId',
+        data: {
+            "currentCollectionId" : currentCollectionId
+        },
+        dataType : 'json'
+    })
+    .done(function (data) {
+        currentCollection = data.contents ;
+        currentCollectionName = data.title ;
+        openAlbum ();
+    })
+    .fail(function(jq, status,err) {
+        console.log("Ajax error",status) ;
+    });
+}
+
 function openAlbum () {
     $("#image-container").css("display","none");
     $("#album-container").css("display","block");
-
+    
+    $('#album-name').val(String(currentCollectionId)) ;
     $.ajax( {
         type: 'GET',
-        url:'/wholeCollection'
+        url:'/wholeCollection',
+        dataType: 'json'
     })
-    .done(function (data) {
-        currentCollection = data ;
-        maxSlideIndex = currentCollection.length ;
-        let nbInCol = maxSlideIndex/4 ;
+    .done(function (res) {
+        // res is a map imageID => array of peopleId
+        let peopleFilter = $("#album-filter").val();
+        let allImages = Object.keys(res) ;
+        let maxAll = allImages.length ;
+        
+        // First iteration to count the number of items
+        let actualMax = maxAll ;
+        if (peopleFilter>0) {
+            actualMax = 0 ;
+            for (let i=0 ; i < maxAll ; i++) {
+                let sIndex = String((i+1)) ;
+                let imagePeopleIds = res[sIndex] ;
+                if (imagePeopleIds.indexOf(String(peopleFilter))==-1) {
+                    continue ;
+                }
+                actualMax++ ;
+            }
+        }
+        
+        let nbInCol = actualMax/4 ;
         let j=0 ;
         let html = "" ;
-        for (let i=0 ; i < maxSlideIndex ; i++) {
-            let src = getImageSrc(i) ;
-    
+        for (let i=0 ; i < maxAll ; i++) {
+            let src = getImageSrc(allImages,i) ;
+            let sIndex = String((i+1)) ;
+            
             if (j==0) {
                 html+='<div class="album-column">';           
             }
-    
-            let s = "<div class='album-img-block'>" ;
+            
+            let visible = "" ;
+            if (peopleFilter>0) {
+                let imagePeopleIds = res[sIndex] ;
+                if (imagePeopleIds.indexOf(String(peopleFilter))==-1) {
+                    visible = 'style = "display:none;"';
+                }
+            }
+            let s = "<div class='album-img-block' "+visible+">" ;
             s+= "<img src='"+src+"' class='album-img'/>" ;
-            s+='<input type="checkbox"  class="album-checkbox" data-value="'+(i+1)+'" />' ;
+            let par = "" ;
+            if (currentCollection.indexOf(sIndex)>=0) {
+                par = 'checked="checked"' ;
+            }
+            s+='<input type="checkbox" '+par+' class="album-checkbox" data-value="'+(i+1)+'" />' ;
             s+= "</div>"
             html+=s;
-    
+            
             j++ ;
             if (j>nbInCol) {
                 j=0 ;
@@ -389,10 +445,33 @@ function openAlbum () {
     });     
 }
 
-function saveAlbum () {
+function closeAlbum () {
     $("#image-container").css("display","block");
     $("#album-container").css("display","none");
+}
 
+function openAlbumTitle () {
+    $("#album-title-box").css("display","block");   
+}
+
+function newAlbum () {
+    $('#album-name').val(-1) ; // to clear the select
+    currentCollectionName = $("#naName").val() ;
+    saveAlbum (true);
+    $("#album-title-box").css("display","none");
+}   
+
+
+function clearAlbum () {
+    let selector = $("#album-container input.album-checkbox") ;
+    selector.each(function() { 
+        this.checked=false ;
+    });
+}
+
+function saveAlbum (fromNewAlbum) {
+    closeAlbum();
+    
     let selector = $("#album-container input.album-checkbox") ;
     var res = [] ;
     selector.each(function() { 
@@ -404,44 +483,89 @@ function saveAlbum () {
     console.log (res) ; // new album
     currentCollection = res ;
     maxSlideIndex = currentCollection.length ;
+    currentCollectionId = $('#album-name').val() ;
     showSlide() ;
     $.ajax( {
         type: 'GET',
         url:'/saveCollection',
         data: {
-            "collection" : currentCollection
+            "collection" : currentCollection,
+            "collectionId" : currentCollectionId,
+            "collectionName" : currentCollectionName
         },
     })
     .done(function (data) {
-     })
+        if (fromNewAlbum) {
+            initCollections()  ;
+        }
+    })
     .fail(function(jq, status,err) {
         console.log("Ajax error",status) ;
     });    
 }
 
-$("#album-title").click(function(ev) {
-    if (ev.altKey) {
-        saveAlbum () ;
-    }
-}); 
-
-function initCurrentCollecion() {
+function initCurrentCollection() {
     $.ajax( {
         type: 'GET',
-        url:'/currentCollection'
+        url:'/currentCollection',
+        dataType: 'json'
     })
     .done(function (data) {
-        currentCollection = data ;
+        currentCollection = data.contents ;
+        currentCollectionId = data.id ;
+        currentCollectionName = data.title ;
         maxSlideIndex = currentCollection.length ;
         showSlide() ;
     })
     .fail(function(jq, status,err) {
         console.log("Ajax error",status) ;
     });    
-
+}
+function initCollections() {
+    $.ajax( {
+        type: 'GET',
+        url:'/collections',
+        dataType : 'json'
+    })
+    .done(function (collections) {
+        let select = $("#album-name") ;
+        let s = "" ;
+        Object.keys(collections).forEach(key => {
+            let collection = collections[key] ;
+            s+= '<option value="'+key+'">'+collection.title+'</option>' ;
+        });
+        select.html(s) ;
+    })
+    .fail(function(jq, status,err) {
+        console.log("Ajax error",status) ;
+    });    
+}
+function fillCollectionSeelectorWithPeople() {
+    $.ajax( {
+        type: 'GET',
+        url:'/peopleList',
+        dataType : 'json'
+    })
+    .done(function (peopleMap) {
+        let select = $("#album-filter") ;
+        let s = "" ;
+        s+= '<option value="'+0+'">Pas de filtre</option>' ;
+        Object.keys(peopleMap).forEach(peopleKey => {
+            let people = peopleMap[peopleKey] ;
+            s+= '<option value="'+peopleKey+'">'+people.name+'</option>' ;
+        });
+        select.html(s) ;  
+    })
+    .fail(function(jq, status,err) {
+        console.log("Ajax error",status) ;
+    }
+    );
+    
 }
 createListEvent();
-initCurrentCollecion ();
+initCollections ();
+initCurrentCollection ();
+fillCollectionSeelectorWithPeople ();
 
 if (mobile) {
     // Cacher les boutons
@@ -449,14 +573,7 @@ if (mobile) {
     $(".people").css("display","none");
     $(".zoom").css("display","none");
     $(".save").css("display","none");
-
-    $("div#image-container").on("swipeleft",function(){
-        plusSlide(-1) ;
-    });
-    $("div#image-container").on("swiperight",function(){
-        plusSlide(1) ;
-    });
-
+    
     window.fullScreen = true ;
 }
 
