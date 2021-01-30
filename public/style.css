@@ -391,8 +391,8 @@ ul li.checked::before {
 /* People Box */
 div#newPeopleBox {
   display: none;
-  width: 400px;
-  height: 400px;
+  width: 440px;
+  height: 440px;
   position : absolute ;
 
   top: 50%;
@@ -405,6 +405,24 @@ div#newPeopleBox {
   border-color: blue;
   padding: 20px;
   z-index: 3;
+}
+
+.newPeopleSection {
+  padding : 10px;
+  display: flex ;
+  flex-direction: row;
+}
+
+.newPeopleSection label {
+  flex : 1 ;
+}
+
+.newPeopleSection input,select,textarea {
+  padding : 4px;
+  flex : 2 ;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
 }
 /* ===========================*/
 
@@ -468,14 +486,14 @@ div#newPeopleBox {
 .album-row {
   display: flex;
   flex-wrap: wrap;
-   padding: 0 4px;
+  padding: 0 4px;
 }
 
 .album-column {
   flex: 0 0 25%;
   max-width: 25%;
   padding: 0 4px;
-
+  justify-content: space-evenly;
 }
 
 .album-column img {

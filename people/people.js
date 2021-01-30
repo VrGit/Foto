@@ -14,6 +14,17 @@ function get(number) {
     }
     return r ;
 }
+function add (r) {
+    let max = -1 ;
+    Object.keys(data).forEach (
+        key => {
+            let i = parseInt(key) ;
+            if (i>max) max=i ;
+        }
+    ) ;
+    max++ ;
+    data[max]=r ;
+}
 
 function setName(r, name) {
     r["name"] = name ;
@@ -52,3 +63,4 @@ module.exports.setSuffix = setSuffix
 module.exports.setDescription = setDescription
 module.exports.size = size
 module.exports.save = save
+module.exports.add = add 

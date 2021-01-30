@@ -45,7 +45,7 @@ function updateAssigned(number, assignedIds) {
         }
     }
     else {
-        clearRelatedPeople (req.query.number);
+        clearRelatedPeople (number);
     }
 }
 function setDescription(number, description, toBeChecked) {

@@ -4,7 +4,7 @@ const metafoto = require('./metafoto/metafoto') ;
 const people = require('./people/people') ;
 const colors = require('./colors/color') ;
 const collections = require('./collections/collections') ;
-const MAX_PHOTO = 122
+const MAX_PHOTO = 112 ;
 
 const fs = require('fs') ;
 const paramsFile = __dirname+'/params.json' ;
@@ -85,6 +85,7 @@ app.get ('/edit', function (req,res) {
 app.get ('/save', function (req,res) {
     metafoto.save();
     collections.save();
+    people.save ();
 
     // Save of the parameters
     let str = JSON.stringify(params, null, 2);
@@ -114,6 +115,12 @@ app.get ('/getAssigned', function (req,res) {
     console.log("getAssignedPeople") ;
     console.log(ap) ;
     res.send(ap) ; 
+});
+app.get ('/newPeople', function (req,res) {
+    let r = req.query ;
+    people.add (r) ;
+    console.log(r.name + ' has been added');
+    res.send(NO_RES) ;
 });
 
 app.get ('/peopleList', function (req,res) {

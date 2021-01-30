@@ -52,9 +52,34 @@
     <div id="newPeopleBox">
         <label class="titreBox">Propriétés d'une personne</label>
         
-        <label for="npName">Nom:</label>
-        <input id="npName"  type="text"/>
+        <div class="newPeopleSection">
+            <label for="npPrefix">Préfixe</label>
+            <select id="npPrefix">
+                <option value="Mme">Mme</option>
+                <option value="Mr">Mr</option>
+             </select>    
+        </div>
         
+        <div class="newPeopleSection">
+            <label for="npName">Nom:</label>
+            <input id="npName"  type="text" placeholder="Aline Dupont"/>    
+        </div>
+        
+        <div class="newPeopleSection">
+            <label for="npSuffix">Suffixe:</label>
+            <input id="npSuffix"  type="text" placeholder="épse Durant"/>    
+        </div>
+
+        <div class="newPeopleSection">
+            <label for="npBirth">Date de naissance:</label>
+            <input id="npBirth"  type="date" />    
+        </div>
+
+        <div class="newPeopleSection">
+            <label for="npDescription">Description:</label>
+            <textarea id="npDescription" rows="5"></textarea> 
+        </div>
+
         <input type="button" value="Ajouter" onclick="saveNewPeople()"/>
         <input type="button" value="Annuler" onclick="closeNewPeople()"/>
     </div>

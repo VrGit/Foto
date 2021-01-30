@@ -47,7 +47,12 @@
   "4": {
     "number": "4",
     "description": "Pierre Platon",
-    "assignedPeople": {},
+    "assignedPeople": {
+      "9": {
+        "x": "53",
+        "y": "85"
+      }
+    },
     "toBeChecked": "true"
   },
   "5": {
@@ -98,7 +103,12 @@
   "10": {
     "number": "10",
     "description": "Photo numéro 10",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "10": {
+        "x": "49",
+        "y": "83"
+      }
+    }
   },
   "11": {
     "number": "11",
@@ -332,7 +342,12 @@
   "49": {
     "number": 49,
     "description": "Photo numéro 49",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "6": {
+        "x": "56",
+        "y": "70"
+      }
+    }
   },
   "50": {
     "number": 50,
@@ -357,12 +372,22 @@
   "54": {
     "number": 54,
     "description": "Photo numéro 54",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "8": {
+        "x": "56",
+        "y": "75"
+      }
+    }
   },
   "55": {
     "number": 55,
     "description": "Photo numéro 55",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "2": {
+        "x": "59",
+        "y": "70"
+      }
+    }
   },
   "56": {
     "number": 56,
@@ -377,7 +402,12 @@
   "58": {
     "number": 58,
     "description": "Photo numéro 58",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "11": {
+        "x": "56",
+        "y": "74"
+      }
+    }
   },
   "59": {
     "number": 59,
@@ -612,7 +642,12 @@
   "104": {
     "number": 104,
     "description": "Photo numéro 104",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "6": {
+        "x": "59",
+        "y": "80"
+      }
+    }
   },
   "105": {
     "number": 105,
@@ -632,17 +667,32 @@
   "108": {
     "number": 108,
     "description": "Photo numéro 108",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "6": {
+        "x": "57",
+        "y": "75"
+      }
+    }
   },
   "109": {
     "number": 109,
     "description": "Photo numéro 109",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "6": {
+        "x": "53",
+        "y": "68"
+      }
+    }
   },
   "110": {
     "number": 110,
     "description": "Photo numéro 110",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "6": {
+        "x": "53",
+        "y": "67"
+      }
+    }
   },
   "111": {
     "number": 111,
@@ -652,7 +702,12 @@
   "112": {
     "number": 112,
     "description": "Photo numéro 112",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "6": {
+        "x": "58",
+        "y": "72"
+      }
+    }
   },
   "113": {
     "number": 113,

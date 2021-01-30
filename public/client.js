@@ -72,8 +72,30 @@ function closeNewPeople () {
     $("#newPeopleBox").css("display","none");
 }
 function saveNewPeople () {
-    // TODO
     $("#newPeopleBox").css("display","none");
+    let name = $("#npName").val() ;
+    let birth = $("#npBirth").val() ;
+    let prefix = $("#npPrefix").val() ;
+    let suffix = $("#npSuffix").val() ;
+    let description = $("#npDescription").val() ;
+    $.ajax( {
+        type: 'GET',
+        url:'/newPeople',
+        data: {
+            "name": name,
+            "birth": birth,
+            "prefix": prefix,
+            "suffix": suffix,
+            "description": description
+        },
+        dataType : 'json'
+    })
+    .done(function (assigned) {
+        fillPeopleList ();
+    })
+    .fail(function(jq, status,err) {
+        console.log("Ajax error",status) ;
+    });    
 }
 /////////////////////////////////////////
 
@@ -425,7 +447,7 @@ function openAlbum () {
             if (currentCollection.indexOf(sIndex)>=0) {
                 par = 'checked="checked"' ;
             }
-            s+='<input type="checkbox" '+par+' class="album-checkbox" data-value="'+(i+1)+'" />' ;
+            s+='<input type="checkbox" '+par+' class="album-checkbox" data-value="'+(i+1)+'"/>' ;
             s+= "</div>"
             html+=s;
             
