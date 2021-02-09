@@ -254,9 +254,11 @@ $("#bPeople").click(function(ev) {
     $("#peopleBox").css("display","block");
     if (ev.altKey) {
         $("#bNewPeople").css("display","inline");
+        $("#bCopyJSON").css("display","inline");
     }
     else {
         $("#bNewPeople").css("display","none");
+        $("#bCopyJSON").css("display","none");
     }
 });  
 
@@ -442,12 +444,15 @@ function openAlbum () {
                 }
             }
             let s = "<div class='album-img-block' "+visible+">" ;
-            s+= "<img src='"+src+"' class='album-img'/>" ;
             let par = "" ;
+            let sty = "" ;
             if (currentCollection.indexOf(sIndex)>=0) {
                 par = 'checked="checked"' ;
+                sty = " style='padding: 20px;' "
             }
-            s+='<input type="checkbox" '+par+' class="album-checkbox" data-value="'+(i+1)+'"/>' ;
+            s+= "<img id='ial"+(i+1)+"' src='"+src+"' class='album-img' "+sty+"/>" ;
+
+            s+='<input type="checkbox" '+par+' class="album-checkbox" data-value="'+(i+1)+'" onclick="onImgAlbumSelect(event)"/>' ;
             s+= "</div>"
             html+=s;
             
@@ -489,6 +494,46 @@ function clearAlbum () {
     selector.each(function() { 
         this.checked=false ;
     });
+}
+
+function openCopyJSON () {
+    $.ajax( {
+        type: 'POST',
+        url:'/getAllData',
+        dataType: 'json'
+    })
+    .done(function (data) {
+        download('metafoto.json',data.metafoto) ;
+        download('people.json',data.people) ;
+        download('collections.json',data.collections) ;
+        download('params.json',data.params) ;
+    })
+    .fail(function(jq, status,err) {
+        console.log("Ajax error",status) ;
+    });    
+ }
+
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+    document.body.removeChild(element);
+}
+
+function onImgAlbumSelect(ev) {
+    var c = $(ev.target) ;
+    let ial = $("#ial" + c.attr('data-value'));
+    if (c.is(":checked")) {
+        ial.css("padding","20px");
+    }
+    else {
+        ial.css("padding","0px");       
+    }
 }
 
 function saveAlbum (fromNewAlbum) {
@@ -597,5 +642,9 @@ if (mobile) {
     $(".save").css("display","none");
     
     window.fullScreen = true ;
+}
+else {
+    $(".zoom").css("display","none");
+    $(".save").css("display","none");   
 }
 

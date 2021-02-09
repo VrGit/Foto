@@ -75,5 +75,19 @@
     "prefix": "Mme",
     "suffix": "",
     "description": ""
+  },
+  "12": {
+    "name": "Eugénie Bertrand",
+    "birth": "1912-02-09",
+    "prefix": "Mme",
+    "suffix": "épse Platon",
+    "description": ""
+  },
+  "13": {
+    "name": "Marguerite Grangier",
+    "birth": "1893-06-09",
+    "prefix": "Mme",
+    "suffix": "épse Bertrand",
+    "description": ""
   }
 }

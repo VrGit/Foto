@@ -537,12 +537,22 @@
   "83": {
     "number": 83,
     "description": "Photo numéro 83",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "2": {
+        "x": "74",
+        "y": "76"
+      },
+      "6": {
+        "x": "29",
+        "y": "73"
+      }
+    }
   },
   "84": {
-    "number": 84,
-    "description": "Photo numéro 84",
-    "assignedPeople": {}
+    "number": "84",
+    "description": "Josette avec le chien Médor",
+    "assignedPeople": {},
+    "toBeChecked": "true"
   },
   "85": {
     "number": 85,
@@ -712,12 +722,30 @@
   "113": {
     "number": 113,
     "description": "Photo numéro 113",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "2": {
+        "x": "39",
+        "y": "71"
+      },
+      "6": {
+        "x": "57",
+        "y": "72"
+      }
+    }
   },
   "114": {
     "number": 114,
     "description": "Photo numéro 114",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "2": {
+        "x": "55",
+        "y": "56"
+      },
+      "13": {
+        "x": "40",
+        "y": "54"
+      }
+    }
   },
   "115": {
     "number": 115,
@@ -727,7 +755,16 @@
   "116": {
     "number": 116,
     "description": "Photo numéro 116",
-    "assignedPeople": {}
+    "assignedPeople": {
+      "2": {
+        "x": "39",
+        "y": "69"
+      },
+      "6": {
+        "x": "58",
+        "y": "72"
+      }
+    }
   },
   "117": {
     "number": 117,
@@ -757,6 +794,161 @@
   "122": {
     "number": 122,
     "description": "Photo numéro 122",
+    "assignedPeople": {}
+  },
+  "123": {
+    "number": 123,
+    "description": "Photo numéro 123",
+    "assignedPeople": {}
+  },
+  "124": {
+    "number": 124,
+    "description": "Photo numéro 124",
+    "assignedPeople": {}
+  },
+  "125": {
+    "number": 125,
+    "description": "Photo numéro 125",
+    "assignedPeople": {}
+  },
+  "126": {
+    "number": 126,
+    "description": "Photo numéro 126",
+    "assignedPeople": {}
+  },
+  "127": {
+    "number": 127,
+    "description": "Photo numéro 127",
+    "assignedPeople": {}
+  },
+  "128": {
+    "number": 128,
+    "description": "Photo numéro 128",
+    "assignedPeople": {}
+  },
+  "129": {
+    "number": 129,
+    "description": "Photo numéro 129",
+    "assignedPeople": {}
+  },
+  "130": {
+    "number": 130,
+    "description": "Photo numéro 130",
+    "assignedPeople": {}
+  },
+  "131": {
+    "number": 131,
+    "description": "Photo numéro 131",
+    "assignedPeople": {}
+  },
+  "132": {
+    "number": 132,
+    "description": "Photo numéro 132",
+    "assignedPeople": {}
+  },
+  "133": {
+    "number": 133,
+    "description": "Photo numéro 133",
+    "assignedPeople": {}
+  },
+  "134": {
+    "number": 134,
+    "description": "Photo numéro 134",
+    "assignedPeople": {}
+  },
+  "135": {
+    "number": 135,
+    "description": "Photo numéro 135",
+    "assignedPeople": {}
+  },
+  "136": {
+    "number": 136,
+    "description": "Photo numéro 136",
+    "assignedPeople": {}
+  },
+  "137": {
+    "number": 137,
+    "description": "Photo numéro 137",
+    "assignedPeople": {}
+  },
+  "138": {
+    "number": 138,
+    "description": "Photo numéro 138",
+    "assignedPeople": {}
+  },
+  "139": {
+    "number": 139,
+    "description": "Photo numéro 139",
+    "assignedPeople": {}
+  },
+  "140": {
+    "number": 140,
+    "description": "Photo numéro 140",
+    "assignedPeople": {}
+  },
+  "141": {
+    "number": 141,
+    "description": "Photo numéro 141",
+    "assignedPeople": {}
+  },
+  "142": {
+    "number": 142,
+    "description": "Photo numéro 142",
+    "assignedPeople": {}
+  },
+  "143": {
+    "number": 143,
+    "description": "Photo numéro 143",
+    "assignedPeople": {}
+  },
+  "144": {
+    "number": 144,
+    "description": "Photo numéro 144",
+    "assignedPeople": {}
+  },
+  "145": {
+    "number": 145,
+    "description": "Photo numéro 145",
+    "assignedPeople": {}
+  },
+  "146": {
+    "number": 146,
+    "description": "Photo numéro 146",
+    "assignedPeople": {}
+  },
+  "147": {
+    "number": 147,
+    "description": "Photo numéro 147",
+    "assignedPeople": {}
+  },
+  "148": {
+    "number": 148,
+    "description": "Photo numéro 148",
+    "assignedPeople": {}
+  },
+  "149": {
+    "number": 149,
+    "description": "Photo numéro 149",
+    "assignedPeople": {}
+  },
+  "150": {
+    "number": 150,
+    "description": "Photo numéro 150",
+    "assignedPeople": {}
+  },
+  "151": {
+    "number": 151,
+    "description": "Photo numéro 151",
+    "assignedPeople": {}
+  },
+  "152": {
+    "number": 152,
+    "description": "Photo numéro 152",
+    "assignedPeople": {}
+  },
+  "153": {
+    "number": 153,
+    "description": "Photo numéro 153",
     "assignedPeople": {}
   },
   "undefined": {

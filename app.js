@@ -4,7 +4,7 @@ const metafoto = require('./metafoto/metafoto') ;
 const people = require('./people/people') ;
 const colors = require('./colors/color') ;
 const collections = require('./collections/collections') ;
-const MAX_PHOTO = 112 ;
+const MAX_PHOTO = 153 ;
 
 const fs = require('fs') ;
 const paramsFile = __dirname+'/params.json' ;
@@ -44,6 +44,14 @@ app.get ('/currentCollection', function (req,res) {
     console.log("Current collection="+r) ;
     res.send(r) ;
  });
+ app.post ('/getAllData', function (req,res) {
+    let r = {} ;
+    r["metafoto"] = JSON.stringify(metafoto.data,null,2);
+    r["people"] = JSON.stringify(people.data,null,2);
+    r["collections"] = JSON.stringify(collections.data,null,2);
+    r["params"] = JSON.stringify(params,null,2);
+    res.send(r) ;
+ });
 
  app.get ('/saveCollection', function (req,res) {
     params.currentCollection = req.query.collectionId ;
@@ -64,6 +72,7 @@ app.get ('/currentCollection', function (req,res) {
 
     collections.data[params.currentCollection]["contents"] = req.query.collection ;
     console.log("Current collection="+params.currentCollection) ;
+    saveAll ();
     res.send(NO_RES) ;
  });
 
@@ -80,9 +89,15 @@ app.get ('/currentCollection', function (req,res) {
 
 app.get ('/edit', function (req,res) {
     metafoto.setDescription(req.query.number ,req.query.description, req.query.toBeChecked) ;
+    saveAll ();
     res.send(NO_RES) ;
  });
 app.get ('/save', function (req,res) {
+    saveAll();
+    res.send(NO_RES) ;
+});
+
+function saveAll () {
     metafoto.save();
     collections.save();
     people.save ();
@@ -93,12 +108,11 @@ app.get ('/save', function (req,res) {
         if (err) throw err;
         console.log('Params written to file');
     });
-
-    res.send(NO_RES) ;
-});
+}
 
 app.get ('/assignPeople', function (req,res) {
     metafoto.updateAssigned (req.query.number, req.query.assignedIds );
+    saveAll ();
     res.send(NO_RES) ;
  });
 app.get ('/positionPeople', function (req,res) {
@@ -107,6 +121,7 @@ app.get ('/positionPeople', function (req,res) {
     let y = req.query.y ;
     console.log('Save pos for '+id+' at '+x+','+y+"=>"+req.query.trace) ;
     metafoto.setRelatedPeoplePosition(req.query.number , id, x, y) ;
+    saveAll ();
     res.send(NO_RES) ;
  });
 app.get ('/getAssigned', function (req,res) {
@@ -120,6 +135,7 @@ app.get ('/newPeople', function (req,res) {
     let r = req.query ;
     people.add (r) ;
     console.log(r.name + ' has been added');
+    saveAll ();
     res.send(NO_RES) ;
 });
 
