@@ -50,14 +50,16 @@ function saveProperties () {
     $("#modalBox").css("display","none");
     
     var b  = $("#iDescription").val() ;
-    var c = $("#toBeChecked").is(":checked")
+    var c = $("#toBeChecked").is(":checked") ;
+    var d = $("#iSkip").is(":checked") ;
     $.ajax( {
         type: 'GET',
         url:'/edit',
         data: {
             "number" : currentCollection[slideIndex],
             "description" : b,
-            "toBeChecked": c
+            "toBeChecked": c,
+            "skip": d
         },
         dataType : 'json'
     }) ;
@@ -395,6 +397,33 @@ function changeAlbum () {
     });
 }
 
+function toggleAlbumSorter () {
+    var cSort = $("#album-sorter") ;
+    if (cSort.is(":checked")) {
+        // the sorter is checked
+        $("#album-row").css("display","none");
+        $("#album-set").css("display","block");
+    
+        let s = "" ;
+        for (let i=0 ; i < currentCollection.length ; i++) {
+            let j = currentCollection[i] ;
+            let src = getImageSrc(currentCollection,i) ;
+            s+= "<div class='album-sorter-div'><img src='"+src+"' class='album-sorter-img' data-value='"+(j)+"'/></div>" ;
+        }
+        $("#album-set").html(s) ;
+
+        $( function() {
+            $( "#album-set" ).sortable();
+            $( "#album-set" ).disableSelection();
+          } );
+    }
+    else {
+        $("#album-row").css("display","block");
+        $("#album-set").css("display","none");
+ 
+    }
+}
+
 function openAlbum () {
     $("#image-container").css("display","none");
     $("#album-container").css("display","block");
@@ -488,6 +517,27 @@ function newAlbum () {
     $("#album-title-box").css("display","none");
 }   
 
+function openRemoveFromAlbum () {
+    if( confirm("Voulez vous vraiment supprimer cette photo de l'almbum?") ) {
+        currentCollection.splice(slideIndex,1);
+        maxSlideIndex = currentCollection.length ;
+        plusSlide(0) ;
+        $.ajax( {
+            type: 'GET',
+            url:'/saveCollection',
+            data: {
+                "collection" : currentCollection,
+                "collectionId" : currentCollectionId,
+                "collectionName" : currentCollectionName
+            },
+        })
+        .done(function (data) {
+        })
+        .fail(function(jq, status,err) {
+            console.log("Ajax error",status) ;
+        });    
+    }
+}   
 
 function clearAlbum () {
     let selector = $("#album-container input.album-checkbox") ;
@@ -538,17 +588,38 @@ function onImgAlbumSelect(ev) {
 
 function saveAlbum (fromNewAlbum) {
     closeAlbum();
-    
-    let selector = $("#album-container input.album-checkbox") ;
-    var res = [] ;
-    selector.each(function() { 
-        var c = $(this).is(":checked") ;
-        if (c) {
-            res.push(this.getAttribute('data-value'));
-        }
-    });
-    console.log (res) ; // new album
-    currentCollection = res ;
+    var cSort = $("#album-sorter") ;
+ 
+    if (cSort.is(":checked")) {
+        let selector = $("#album-set img") ;
+        var res = [] ; // The new album
+        selector.each(function() { 
+             res.push(this.getAttribute('data-value'));
+        });
+        cSort.prop( "checked", false ); // to reset when reopen the album
+        currentCollection = res ;
+    }
+    else {
+        let selector = $("#album-container input.album-checkbox") ;
+        selector.each(function() { 
+            var c = $(this).is(":checked") ;
+            let n = this.getAttribute('data-value') ;
+            let p = currentCollection.indexOf(n) ;
+            if (c) {
+                // push at the end
+                if (p==-1) {
+                    currentCollection.push(n);
+                }               
+            }
+            else {
+                // Remove if found
+                if (p>-1) {
+                    currentCollection.splice(p,1) ;
+                }    
+            }
+        });
+
+    }
     maxSlideIndex = currentCollection.length ;
     currentCollectionId = $('#album-name').val() ;
     showSlide() ;
@@ -640,6 +711,7 @@ if (mobile) {
     $(".people").css("display","none");
     $(".zoom").css("display","none");
     $(".save").css("display","none");
+    $(".remove").css("display","none");
     
     window.fullScreen = true ;
 }

@@ -22,6 +22,7 @@
         <a class="zoom" onclick="openZoom()"><img src="zoom.png" class="icone"></a>
         <a class="save" onclick="onSave()"><img src="save.png" class="icone"></a>
         <a id="warning" class="warning"><img src="exclQues.png" class="icone"></a>
+        <a class="remove" onclick="openRemoveFromAlbum()"><img src="remove.png" class="icone"></a>
         
     </div>
     
@@ -32,6 +33,10 @@
             
             <label class="vrCMcontainer">Cette description doit être confirmée.
                 <input id="toBeChecked" type="checkbox">
+                <span class="vrCMcheckmark"></span>
+            </label>
+            <label class="vrCMcontainer">Ne pas publier cette photo.
+                <input id="iSkip" type="checkbox">
                 <span class="vrCMcheckmark"></span>
             </label>
             
@@ -95,10 +100,13 @@
             <input id="album-valider" type="button" value="Valider" onclick="saveAlbum()"/>
             <input id="album-clear" type="button" value="Vider" onclick="clearAlbum()"/>
             <input id="album-valider" type="button" value="Ignorer" onclick="closeAlbum()"/>
+            <input id="album-sorter" type="checkbox"  onclick="toggleAlbumSorter()"/>
+            <label for="album-sorter" style="color:white;">Trieur de photos</label>
         </div>
  
-        <div id="album-row" class="album-row">
-            
+        <div id="album-row" class="album-row">       
+        </div>
+        <div id="album-set" class="album-set">       
         </div>
         
     </div>
@@ -112,10 +120,8 @@
      </div>
     
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <!--  
-  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-  
-    -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script src="magnifier.js"></script>
     <script src="client.js"></script>
     <script src="swip.js"></script>

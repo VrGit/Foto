@@ -10,6 +10,7 @@ function get(number) {
         r = {
             "number":number,
             "description":"Photo numéro "+number,
+            "skip":false,
             "assignedPeople": {}
         } ;
         data[number] = r ;
@@ -22,6 +23,10 @@ function get(number) {
         let b = r["assignedPeople"] ;
         if (b === undefined) {
             r["assignedPeople"] = {} ;
+        }
+        let c = r["skip"] ;
+        if (c === undefined) {
+            r["skip"] = false ;
         }
     }
     return r ;
@@ -48,11 +53,12 @@ function updateAssigned(number, assignedIds) {
         clearRelatedPeople (number);
     }
 }
-function setDescription(number, description, toBeChecked) {
+function setDescription(number, description, toBeChecked, skip) {
     let r = get(number) ;
     r["number"] = number ;
     r["description"] = description ;
     r["toBeChecked"] = toBeChecked ;
+    r["skip"] = skip ;
     return r ;
 }
 

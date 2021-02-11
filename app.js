@@ -88,7 +88,7 @@ app.get ('/currentCollection', function (req,res) {
 
 
 app.get ('/edit', function (req,res) {
-    metafoto.setDescription(req.query.number ,req.query.description, req.query.toBeChecked) ;
+    metafoto.setDescription(req.query.number ,req.query.description, req.query.toBeChecked, req.query.skip) ;
     saveAll ();
     res.send(NO_RES) ;
  });

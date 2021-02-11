@@ -26,7 +26,7 @@ body {
 }
 
 /* Next & previous buttons */
-.prev, .next, .edit, .people, .zoom, .save, .warning {
+.prev, .next, .edit, .people, .zoom, .save, .warning, .remove {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -83,6 +83,12 @@ body {
 
 .warning {
   left: 0;
+  top: 90% ;
+  border-radius: 3px 0 0 3px;
+}
+
+.remove {
+  right: 0;
   top: 90% ;
   border-radius: 3px 0 0 3px;
 }
@@ -500,6 +506,7 @@ div#newPeopleBox {
   margin-top: 8px;
   vertical-align: middle;
   width: 100%;
+  background-color: #45a049;
 }
 
 .album-img-block { 
@@ -549,4 +556,17 @@ div#newPeopleBox {
 #album-title-box input[type=button] {
   padding: 4px;
   margin: 8px 8px;
+}
+
+.album-sorter-div {
+  border : 3px ;
+  background-color : #4CAF50; ;
+  display: inline-block ;
+  margin: 6px;
+  padding: 6px;
+}
+
+.album-sorter-img {
+  height: 240px;
+  width: auto;
 }
