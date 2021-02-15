@@ -257,7 +257,7 @@ function  fillDescriptor(text, warning, year, location) {
     currentYear = year ;
     currentLocation = location ;
     if (warning === undefined) warning = false ;
-    currentToBeChecked = warning ;
+    currentToBeChecked = (warning == 'true');
     let cd = text ;
     if (year>0) cd += ' ('+year+')' ;
     if (location>0) {
@@ -267,7 +267,7 @@ function  fillDescriptor(text, warning, year, location) {
         }      
     }
     $("#description").html(cd) ;
-    if (warning) {
+    if (currentToBeChecked) {
         $("#warning").css("display","block");
     }
     else {

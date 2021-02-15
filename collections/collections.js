@@ -15,8 +15,7 @@ function save () {
     let str = JSON.stringify(data, null, 2);
     fs.writeFile(file, str, (err) => {
         if (err) throw err;
-        console.log('Collecions written to file');
-    });
+     });
 }
 
 module.exports.data = data 

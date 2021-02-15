@@ -635,10 +635,10 @@
     "number": "84",
     "description": "Josette avec le chien Médor",
     "assignedPeople": {},
-    "toBeChecked": "true",
-    "skip": false,
-    "year": -1,
-    "location": -1
+    "toBeChecked": "false",
+    "skip": "false",
+    "year": "-1",
+    "location": "-1"
   },
   "85": {
     "number": 85,
@@ -865,7 +865,7 @@
     "skip": "false",
     "year": "1938",
     "location": "1",
-    "toBeChecked": "true"
+    "toBeChecked": "false"
   },
   "115": {
     "number": 115,
@@ -986,7 +986,7 @@
     "skip": "false",
     "year": "1938",
     "toBeChecked": "false",
-    "location": -1
+    "location": "-1"
   },
   "129": {
     "number": "129",
@@ -1003,8 +1003,8 @@
     },
     "skip": "false",
     "year": "1938",
-    "toBeChecked": "true",
-    "location": -1
+    "toBeChecked": "false",
+    "location": "-1"
   },
   "130": {
     "number": 130,
@@ -1169,7 +1169,7 @@
     "skip": "false",
     "toBeChecked": "false",
     "year": "1938",
-    "location": -1
+    "location": "-1"
   },
   "152": {
     "number": 152,

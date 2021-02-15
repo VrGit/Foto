@@ -29,6 +29,7 @@ app.get ('/description', function (req,res) {
         aPeople.push([key.trim(),s,v.x,v.y,colors.getColor(i)]) ;
     });
     r["aPeople"] = aPeople ;
+    console.log(r);
     res.send(r) ; 
 });
 
@@ -111,8 +112,7 @@ function saveAll () {
     let str = JSON.stringify(params, null, 2);
     fs.writeFile(paramsFile, str, (err) => {
         if (err) throw err;
-        console.log('Params written to file');
-    });
+     });
 }
 
 app.get ('/assignPeople', function (req,res) {
@@ -124,7 +124,6 @@ app.get ('/positionPeople', function (req,res) {
     let id = req.query.id ;
     let x = req.query.x ;
     let y = req.query.y ;
-    console.log('Save pos for '+id+' at '+x+','+y+"=>"+req.query.trace) ;
     metafoto.setRelatedPeoplePosition(req.query.number , id, x, y) ;
     saveAll ();
     res.send(NO_RES) ;
@@ -132,14 +131,11 @@ app.get ('/positionPeople', function (req,res) {
 app.get ('/getAssigned', function (req,res) {
     let r  = metafoto.get(req.query.number) ;
     let ap = r["assignedPeople"] ;
-    console.log("getAssignedPeople") ;
-    console.log(ap) ;
-    res.send(ap) ; 
+     res.send(ap) ; 
 });
 app.get ('/newPeople', function (req,res) {
     let r = req.query ;
     people.add (r) ;
-    console.log(r.name + ' has been added');
     saveAll ();
     res.send(NO_RES) ;
 });

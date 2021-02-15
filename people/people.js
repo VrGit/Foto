@@ -50,7 +50,6 @@ function save () {
     let str = JSON.stringify(data, null, 2);
     fs.writeFile(file, str, (err) => {
         if (err) throw err;
-        console.log('People written to file');
     });
 }
 
