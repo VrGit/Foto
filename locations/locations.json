@@ -1,0 +1,35 @@
+{
+    "-1": {
+        "name": "Non défini",
+        "type": ""
+    },
+    "1": {
+        "name": "Le Thor",
+        "type": "Village"
+    },
+    "2": {
+        "name": "Le Tas de Granges",
+        "type": "Lieu-dit"
+    },
+    "3": {
+        "name": "Isle sur la sorgue",
+        "type": "Village"
+    },
+    "4": {
+        "name": "Saumane",
+        "type": "Village"
+    },
+    "30": {
+        "name": "Gard",
+        "type": "Département"
+        },
+    "31": {
+        "name": "Haute-Garonne",
+        "type": "Département"
+},
+    "84": {
+        "name": "Vaucluse",
+        "type": "Département"
+    }
+}
+    

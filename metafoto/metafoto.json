@@ -636,7 +636,9 @@
     "description": "Josette avec le chien Médor",
     "assignedPeople": {},
     "toBeChecked": "true",
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "85": {
     "number": 85,
@@ -844,11 +846,12 @@
         "y": "72"
       }
     },
-    "skip": false
+    "skip": false,
+    "year": -1
   },
   "114": {
-    "number": 114,
-    "description": "Photo numéro 114",
+    "number": "114",
+    "description": "Devant la vielle grange",
     "assignedPeople": {
       "2": {
         "x": "55",
@@ -859,13 +862,17 @@
         "y": "54"
       }
     },
-    "skip": false
+    "skip": "false",
+    "year": "1938",
+    "location": "1",
+    "toBeChecked": "true"
   },
   "115": {
     "number": 115,
     "description": "Photo numéro 115",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1
   },
   "116": {
     "number": 116,
@@ -880,25 +887,31 @@
         "y": "72"
       }
     },
-    "skip": false
+    "skip": false,
+    "year": -1
   },
   "117": {
-    "number": 117,
-    "description": "Photo numéro 117",
+    "number": "117",
+    "description": "Devant les \"mussy\" ",
     "assignedPeople": {},
-    "skip": false
+    "skip": "false",
+    "year": "1946",
+    "toBeChecked": "false"
   },
   "118": {
     "number": 118,
     "description": "Photo numéro 118",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1
   },
   "119": {
     "number": 119,
     "description": "Photo numéro 119",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "120": {
     "number": 120,
@@ -910,7 +923,9 @@
     "number": 121,
     "description": "Photo numéro 121",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "122": {
     "number": 122,
@@ -922,73 +937,113 @@
     "number": 123,
     "description": "Photo numéro 123",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "124": {
     "number": 124,
     "description": "Photo numéro 124",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "125": {
     "number": 125,
     "description": "Photo numéro 125",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "126": {
-    "number": 126,
-    "description": "Photo numéro 126",
-    "assignedPeople": {},
-    "skip": false
+    "number": "126",
+    "description": "En vélo, dans la cour, devant le grange",
+    "assignedPeople": {
+      "2": {
+        "x": "52",
+        "y": "74"
+      }
+    },
+    "skip": "false",
+    "year": "1942",
+    "location": "1",
+    "toBeChecked": "false"
   },
   "127": {
     "number": 127,
     "description": "Photo numéro 127",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "128": {
-    "number": 128,
-    "description": "Photo numéro 128",
+    "number": "128",
+    "description": "Avec les parents et les grands parents",
     "assignedPeople": {},
-    "skip": false
+    "skip": "false",
+    "year": "1938",
+    "toBeChecked": "false",
+    "location": -1
   },
   "129": {
-    "number": 129,
-    "description": "Photo numéro 129",
-    "assignedPeople": {},
-    "skip": false
+    "number": "129",
+    "description": "Dans les bras de Marie-Rose",
+    "assignedPeople": {
+      "2": {
+        "x": "41",
+        "y": "60"
+      },
+      "12": {
+        "x": "58",
+        "y": "58"
+      }
+    },
+    "skip": "false",
+    "year": "1938",
+    "toBeChecked": "true",
+    "location": -1
   },
   "130": {
     "number": 130,
     "description": "Photo numéro 130",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "131": {
     "number": 131,
     "description": "Photo numéro 131",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "132": {
     "number": 132,
     "description": "Photo numéro 132",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1
   },
   "133": {
     "number": 133,
     "description": "Photo numéro 133",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "134": {
     "number": 134,
     "description": "Photo numéro 134",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "135": {
     "number": 135,
@@ -1000,25 +1055,31 @@
     "number": 136,
     "description": "Photo numéro 136",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "137": {
     "number": 137,
     "description": "Photo numéro 137",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1
   },
   "138": {
     "number": 138,
     "description": "Photo numéro 138",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1
   },
   "139": {
     "number": 139,
     "description": "Photo numéro 139",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "140": {
     "number": "140",
@@ -1031,13 +1092,17 @@
     "number": 141,
     "description": "Photo numéro 141",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "142": {
     "number": 142,
     "description": "Photo numéro 142",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "143": {
     "number": 143,
@@ -1055,25 +1120,33 @@
     "number": 145,
     "description": "Photo numéro 145",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "146": {
     "number": 146,
     "description": "Photo numéro 146",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "147": {
     "number": 147,
     "description": "Photo numéro 147",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "148": {
     "number": 148,
     "description": "Photo numéro 148",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "149": {
     "number": 149,
@@ -1085,25 +1158,39 @@
     "number": 150,
     "description": "Photo numéro 150",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "151": {
-    "number": 151,
-    "description": "Photo numéro 151",
+    "number": "151",
+    "description": "Devant les vignes ",
     "assignedPeople": {},
-    "skip": false
+    "skip": "false",
+    "toBeChecked": "false",
+    "year": "1938",
+    "location": -1
   },
   "152": {
     "number": 152,
     "description": "Photo numéro 152",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "153": {
     "number": 153,
     "description": "Photo numéro 153",
-    "assignedPeople": {},
-    "skip": false
+    "assignedPeople": {
+      "2": {
+        "x": "55",
+        "y": "76"
+      }
+    },
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "undefined": {
     "description": "Photo numéro undefined",

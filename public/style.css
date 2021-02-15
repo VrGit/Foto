@@ -325,7 +325,7 @@ div#peopleBox {
 }
 
 #peopleList {
-  height: 140px;
+  height: 480px;
   overflow: scroll;
 }
 /* Remove margins and padding from the list */

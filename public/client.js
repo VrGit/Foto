@@ -4,10 +4,13 @@ var maxSlideIndex = 0 ;
 
 var currentCheckedPeople ;
 var currentDescription = "?";
+var currentYear = -1 ;
+var currentLocation = -1 ;
 var currentToBeChecked = false ;
 var currentCollection = [] ;
 var currentCollectionId = 0 ;
 var currentCollectionName = "" ;
+var allLocations = {};
 
 var zoomOn = false ;
 const zoomID = "myZoomID" ;
@@ -39,7 +42,15 @@ function openProperties () {
     
     $("#iDescription").val(currentDescription) ;
     $("#toBeChecked").prop('checked', currentToBeChecked);
-    
+
+    let opts = '<option value=-1>Non définie</option>' ;
+    for (let i=1900 ; i < 2050 ; i++) {
+        opts += '<option value='+i+'>'+i+'</option>' ;
+    }
+    $("#iDate").html(opts);
+    $("#iDate").val(currentYear);
+
+    $("#iLocation").val(currentLocation);
 }
 
 function closeProperties () {
@@ -52,6 +63,8 @@ function saveProperties () {
     var b  = $("#iDescription").val() ;
     var c = $("#toBeChecked").is(":checked") ;
     var d = $("#iSkip").is(":checked") ;
+    var e = $("#iDate").val() ;
+    var l = $("#iLocation").val() ;
     $.ajax( {
         type: 'GET',
         url:'/edit',
@@ -59,11 +72,13 @@ function saveProperties () {
             "number" : currentCollection[slideIndex],
             "description" : b,
             "toBeChecked": c,
-            "skip": d
+            "skip": d,
+            "year": e,
+            "location": l
         },
         dataType : 'json'
     }) ;
-    fillDescriptor(b,c) ;     
+    fillDescriptor(b,c,e,l) ;     
 }
 /////////////////////////////////////////
 function openNewPeople () {
@@ -208,7 +223,7 @@ function showSlide() {
     })
     .done(function (data) {
         
-        fillDescriptor(data["description"],data["toBeChecked"]) ;
+        fillDescriptor(data["description"],data["toBeChecked"],data["year"],data["location"]) ;
         
         let tt = data["aPeople"] ;
         for (let i=0 ; i < tt.length ; i++) {
@@ -237,11 +252,21 @@ function showSlide() {
     
 }
 
-function  fillDescriptor(text, warning) {
+function  fillDescriptor(text, warning, year, location) {
     currentDescription = text ;
+    currentYear = year ;
+    currentLocation = location ;
     if (warning === undefined) warning = false ;
     currentToBeChecked = warning ;
-    $("#description").html(text) ;
+    let cd = text ;
+    if (year>0) cd += ' ('+year+')' ;
+    if (location>0) {
+        let loc = allLocations[location] ;
+        if (loc !== undefined) {
+            cd += ' ['+loc.name+']' ;
+        }      
+    }
+    $("#description").html(cd) ;
     if (warning) {
         $("#warning").css("display","block");
     }
@@ -254,6 +279,7 @@ function  fillDescriptor(text, warning) {
 $("#bPeople").click(function(ev) {
     fillPeopleList();
     $("#peopleBox").css("display","block");
+
     if (ev.altKey) {
         $("#bNewPeople").css("display","inline");
         $("#bCopyJSON").css("display","inline");
@@ -678,6 +704,26 @@ function initCollections() {
         console.log("Ajax error",status) ;
     });    
 }
+function initLocations() {
+    $.ajax( {
+        type: 'GET',
+        url:'/getLocations',
+        dataType : 'json'
+    })
+    .done(function (locations) {
+        allLocations = locations ;
+        let select = $("#iLocation") ;
+        let s = "" ;
+        Object.keys(locations).forEach(key => {
+            let location = locations[key] ;
+            s+= '<option value="'+key+'">'+location.name+'</option>' ;
+        });
+        select.html(s) ;
+    })
+    .fail(function(jq, status,err) {
+        console.log("Ajax error",status) ;
+    });    
+}
 function fillCollectionSeelectorWithPeople() {
     $.ajax( {
         type: 'GET',
@@ -702,6 +748,7 @@ function fillCollectionSeelectorWithPeople() {
 }
 createListEvent();
 initCollections ();
+initLocations ();
 initCurrentCollection ();
 fillCollectionSeelectorWithPeople ();
 

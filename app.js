@@ -3,6 +3,7 @@ const app = express ();
 const metafoto = require('./metafoto/metafoto') ;
 const people = require('./people/people') ;
 const colors = require('./colors/color') ;
+const locations = require('./locations/locations') ;
 const collections = require('./collections/collections') ;
 const MAX_PHOTO = 153 ;
 
@@ -31,6 +32,9 @@ app.get ('/description', function (req,res) {
     res.send(r) ; 
 });
 
+app.get ('/getLocations', function (req,res) {
+    res.send(locations.data) ;
+ });
 app.get ('/currentCollection', function (req,res) {
     let r = collections.data[params.currentCollection] ;
     r["id"]=params.currentCollection;
@@ -49,6 +53,7 @@ app.get ('/currentCollection', function (req,res) {
     r["metafoto"] = JSON.stringify(metafoto.data,null,2);
     r["people"] = JSON.stringify(people.data,null,2);
     r["collections"] = JSON.stringify(collections.data,null,2);
+    r["locations"] = JSON.stringify(locations.data,null,2);
     r["params"] = JSON.stringify(params,null,2);
     res.send(r) ;
  });
@@ -88,7 +93,7 @@ app.get ('/currentCollection', function (req,res) {
 
 
 app.get ('/edit', function (req,res) {
-    metafoto.setDescription(req.query.number ,req.query.description, req.query.toBeChecked, req.query.skip) ;
+    metafoto.setDescription(req.query.number ,req.query.description, req.query.toBeChecked, req.query.skip, req.query.year, req.query.location) ;
     saveAll ();
     res.send(NO_RES) ;
  });
