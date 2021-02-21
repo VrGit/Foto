@@ -89,5 +89,19 @@
     "prefix": "Mme",
     "suffix": "épse Bertrand",
     "description": ""
+  },
+  "14": {
+    "name": "Henri Bertrand",
+    "birth": "",
+    "prefix": "Mr",
+    "suffix": "Combe",
+    "description": ""
+  },
+  "15": {
+    "name": "Georges Platon",
+    "birth": "",
+    "prefix": "Mr",
+    "suffix": "",
+    "description": ""
   }
 }

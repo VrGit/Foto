@@ -282,7 +282,9 @@ $("#bPeople").click(function(ev) {
 
     if (ev.altKey) {
         $("#bNewPeople").css("display","inline");
-        $("#bCopyJSON").css("display","inline");
+        if (ev.shiftKey) {
+            $("#bCopyJSON").css("display","inline");
+        }
     }
     else {
         $("#bNewPeople").css("display","none");

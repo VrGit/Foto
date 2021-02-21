@@ -68,7 +68,9 @@
         "y": "51"
       }
     },
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "6": {
     "number": "6",
@@ -183,7 +185,9 @@
         "y": "55"
       }
     },
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "17": {
     "number": "17",
@@ -629,7 +633,9 @@
         "y": "73"
       }
     },
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "84": {
     "number": "84",
@@ -834,8 +840,8 @@
     "skip": false
   },
   "113": {
-    "number": 113,
-    "description": "Photo numéro 113",
+    "number": "113",
+    "description": "Devant le hangar ...",
     "assignedPeople": {
       "2": {
         "x": "39",
@@ -846,8 +852,10 @@
         "y": "72"
       }
     },
-    "skip": false,
-    "year": -1
+    "skip": "false",
+    "year": "1943",
+    "location": "-1",
+    "toBeChecked": "false"
   },
   "114": {
     "number": "114",
@@ -872,11 +880,12 @@
     "description": "Photo numéro 115",
     "assignedPeople": {},
     "skip": false,
-    "year": -1
+    "year": -1,
+    "location": -1
   },
   "116": {
-    "number": 116,
-    "description": "Photo numéro 116",
+    "number": "116",
+    "description": "Josette et le frangin !",
     "assignedPeople": {
       "2": {
         "x": "39",
@@ -887,8 +896,10 @@
         "y": "72"
       }
     },
-    "skip": false,
-    "year": -1
+    "skip": "false",
+    "year": "1943",
+    "location": "1",
+    "toBeChecked": "false"
   },
   "117": {
     "number": "117",
@@ -896,14 +907,30 @@
     "assignedPeople": {},
     "skip": "false",
     "year": "1946",
-    "toBeChecked": "false"
+    "toBeChecked": "false",
+    "location": -1
   },
   "118": {
-    "number": 118,
-    "description": "Photo numéro 118",
-    "assignedPeople": {},
-    "skip": false,
-    "year": -1
+    "number": "118",
+    "description": "Marguerite, Gérard et Josette",
+    "assignedPeople": {
+      "2": {
+        "x": "64",
+        "y": "62"
+      },
+      "6": {
+        "x": "52",
+        "y": "70"
+      },
+      "13": {
+        "x": "35",
+        "y": "65"
+      }
+    },
+    "skip": "false",
+    "year": "1942",
+    "location": "1",
+    "toBeChecked": "false"
   },
   "119": {
     "number": 119,
@@ -931,7 +958,9 @@
     "number": 122,
     "description": "Photo numéro 122",
     "assignedPeople": {},
-    "skip": false
+    "skip": false,
+    "year": -1,
+    "location": -1
   },
   "123": {
     "number": 123,
@@ -982,7 +1011,12 @@
   "128": {
     "number": "128",
     "description": "Avec les parents et les grands parents",
-    "assignedPeople": {},
+    "assignedPeople": {
+      "14": {
+        "x": "77",
+        "y": "56"
+      }
+    },
     "skip": "false",
     "year": "1938",
     "toBeChecked": "false",
@@ -1071,7 +1105,8 @@
     "description": "Photo numéro 138",
     "assignedPeople": {},
     "skip": false,
-    "year": -1
+    "year": -1,
+    "location": -1
   },
   "139": {
     "number": 139,
