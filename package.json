@@ -5,9 +5,8 @@
   "main": "app.js",
   "scripts": {
       "start": "node app.js",
-       "server": "nodemon app.js",
-       "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
-   },
+       "server": "node app.js"
+    },
   "author": "Virtualité Réelle",
   "license": "ISC",
     "dependencies": {
